@@ -1,0 +1,53 @@
+# Render Blueprint — Directus + Postgres + Key Value (Redis-compatible).
+# https://render.com/docs/blueprint-spec
+
+databases:
+  - name: directus-db
+    databaseName: directus
+    plan: free
+
+services:
+  - type: keyvalue
+    name: directus-cache
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: Key Value network access (tighten for production if needed).
+
+  - type: web
+    name: directus
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /server/ping
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: DB_CLIENT
+        value: pg
+      - key: DB_CONNECTION_STRING
+        fromDatabase:
+          name: directus-db
+          property: connectionString
+      - key: DB_SSL__REJECT_UNAUTHORIZED
+        value: 'false'
+      - key: REDIS
+        fromService:
+          type: keyvalue
+          name: directus-cache
+          property: connectionString
+      - key: CACHE_ENABLED
+        value: 'true'
+      - key: CACHE_STORE
+        value: redis
+      - key: SYNCHRONIZATION_STORE
+        value: redis
+      - key: SECRET
+        generateValue: true
+      - key: STORAGE_LOCATIONS
+        value: local
+      - key: STORAGE_LOCAL_DRIVER
+        value: local
+      - key: STORAGE_LOCAL_ROOT
+        value: /directus/uploads
