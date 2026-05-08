@@ -10,7 +10,7 @@ environment wiring. Everything runs on Render's **free** tier by default.
 Click the button to start the blueprint deploy. You need a Render account, and Render will guide you through the rest of
 the setup.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/LZylstra/directus-render)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/directus-labs/directus-render-blueprint)
 
 1. Sign up or log in at [render.com](https://render.com) when prompted.
 2. Confirm the Blueprint and create the stack.
