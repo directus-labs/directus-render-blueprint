@@ -31,7 +31,7 @@ Fork this repo to GitHub, make your changes to `render.yaml` or `Dockerfile`, th
 Common things to change in `render.yaml`: instance `plan`, adding a `disk` (requires a paid web tier), or adjusting env
 vars. See [Render's Blueprint docs](https://render.com/docs/blueprint-spec) for the full spec.
 
-## To update the Directus version, change the image tag in [`Dockerfile`](Dockerfile) (e.g. `directus/directus:11.17.4`) and redeploy.
+### To update the Directus version, change the image tag in [`Dockerfile`](Dockerfile) (e.g. `directus/directus:11.17.4`) and redeploy.
 
 ## Free tier limits
 
